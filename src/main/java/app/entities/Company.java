@@ -88,4 +88,5 @@ public class Company {
                 ", ownerId=" + ownerId +
                 '}';
     }
+
 }
