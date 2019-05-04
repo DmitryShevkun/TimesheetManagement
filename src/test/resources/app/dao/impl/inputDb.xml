@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <project id="1" name="project_1" logoUrl="logo1" startDate="2019-01-31" endDate="2019-05-31" manHours="1000" code="001" colour="white" description="description1"/>
-    <project id="2" name="project_2" logoUrl="logo2" startDate="2019-02-28" endDate="2019-06-30" manHours="1500" code="002" colour="grey" description="description2"/>
-    <project id="6" name="project_6" logoUrl="logo6" startDate="2019-12-31" endDate="2020-12-31" manHours="10000" code="006" colour="green" description="description6"/>
+    <project id="1" name="project_1" logo="logo1" startDate="2019-01-31" endDate="2019-05-31" manHours="1000" code="001" colour="white" description="description1"/>
+    <project id="2" name="project_2" logo="logo2" startDate="2019-02-28" endDate="2019-06-30" manHours="1500" code="002" colour="grey" description="description2"/>
+    <project id="6" name="project_6" logo="logo6" startDate="2019-12-31" endDate="2020-12-31" manHours="10000" code="006" colour="green" description="description6"/>
 </dataset>

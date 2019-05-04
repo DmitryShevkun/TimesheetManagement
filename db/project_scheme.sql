@@ -122,7 +122,7 @@ CREATE TABLE `Project` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `companyId` bigint(20) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `logoUrl` varchar(100) NOT NULL,
+  `logo` varchar(100) NOT NULL,
   `startDate` date NOT NULL,
   `endDate` date DEFAULT NULL,
   `manHours` int(11) DEFAULT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE `Project` (
   `color` varchar(20) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `code_UNIQUE` (`code`,`logoUrl`),
+  UNIQUE KEY `code_UNIQUE` (`code`,`logo`),
   UNIQUE KEY `CompanyIdName_UNIQUE` (`companyId`,`name`),
   KEY `companyId_idx` (`companyId`),
   CONSTRAINT `ProjectCompanyId` FOREIGN KEY (`companyId`) REFERENCES `Company` (`id`)
