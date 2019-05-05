@@ -34,7 +34,7 @@
         <liquibase.version>3.6.2</liquibase.version>
 
         <jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
-        <db.url>jdbc:mysql://mifortdev.cmltklqkx5d1.eu-west-1.rds.amazonaws.com:3306/timesheet_dev?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</db.url>
+        <db.url>jdbc:mysql://mifortdev.cmltklqkx5d1.eu-west-1.rds.amazonaws.com:3306/Timesheetmanager?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</db.url>
         <db.username>javadev</db.username>
         <db.password>123qweasdzxc</db.password>
         <hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
