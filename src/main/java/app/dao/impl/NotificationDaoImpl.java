@@ -2,13 +2,14 @@ package app.dao.impl;
 
 import app.dao.BasicCrudDao;
 import app.entities.Notification;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Repository
 @Transactional
@@ -19,35 +20,62 @@ public class NotificationDaoImpl implements BasicCrudDao<Notification> {
 
 	@Override
 	public void create(Notification notification) {
-		sessionFactory.getCurrentSession().save(notification);
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    session.save(notification);
+	    session.getTransaction().commit();
+	    session.close();
 	}
 
 	@Override
 	public void update(Notification notification) {
-		sessionFactory.getCurrentSession().update(notification);
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    session.update(notification);
+	    session.getTransaction().commit();
+	    session.close();
 	}
 
 	@Override
 	public Notification findById(int id) {
-		Notification notification = sessionFactory.getCurrentSession().get(Notification.class, id);
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    Notification notification = session.get(Notification.class, id);
+	    if (notification == null) {
+	        throw new NoSuchElementException("No such notification");
+        }
+	    session.getTransaction().commit();
+	    session.close();
 		return notification;
 	}
 
 	@Override
 	public List<Notification> findAll() {
-		Query query = sessionFactory.getCurrentSession().createQuery("from Notification");
-		return query.getResultList();
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    List<Notification> notifications = session.createQuery("from Notification").getResultList();
+	    session.getTransaction().commit();
+	    session.close();
+		return notifications;
 
 	}
 
 	@Override
 	public void deleteById(int id) {
-		sessionFactory.getCurrentSession().delete(findById(id));
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    session.delete(findById(id));
+	    session.getTransaction().commit();
+	    session.close();
 	}
 
 	@Override
 	public void delete(Notification notification) {
-		sessionFactory.getCurrentSession().delete(notification);
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    session.delete(notification);
+	    session.getTransaction().commit();
+	    session.close();
 	}
 
 
