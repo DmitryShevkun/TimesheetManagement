@@ -6,16 +6,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class DBConnection {
 
     @Value("${jdbc.driver}")
-    private static String driver;
+    private static String driver = "com.mysql.cj.jdbc.Driver";
     @Value("${db.url}")
-    private static String url;
+    private static String url = "jdbc:mysql://localhost:3306/timesheet_dev?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     @Value("${db.username}")
-    private static String username;
+    private static String username = "username";
     @Value("${db.password}")
-    private static String password;
+    private static String password = "qwerty123";
+
 
     public Connection getConnection() {
         try {
@@ -30,5 +32,7 @@ public class DBConnection {
             return null;
         }
     }
+
+
 
 }
