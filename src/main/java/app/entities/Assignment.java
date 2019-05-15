@@ -1,6 +1,8 @@
 package app.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
@@ -10,6 +12,7 @@ import java.util.Objects;
 public class Assignment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int projectId;
     private int employeeId;
@@ -86,17 +89,11 @@ public class Assignment {
             return false;
         }
         Assignment that = (Assignment) object;
-        return getId() == that.getId()
-                && getProjectId() == that.getProjectId()
-                && getEmployeeId() == that.getEmployeeId()
-                && getActivityId() == that.getActivityId()
-                && getWorkLoad() == that.getWorkLoad();
+        return getId() == that.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects
-                .hash(getId(), getProjectId(), getEmployeeId(),
-                        getActivityId(), getWorkLoad());
+        return Objects.hash(getId());
     }
 }

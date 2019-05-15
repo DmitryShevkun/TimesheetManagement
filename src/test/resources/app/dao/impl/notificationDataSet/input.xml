@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+    <notification id="1" createdAt="2019-04-01 17:00:00" employeeId="1" status="status1" title="title1" description="description1" link="link1"/>
+    <notification id="2" createdAt="2019-04-02 17:00:00" employeeId="2" status="status2" title="title2" description="description2" link="link2"/>
+    <notification id="3" createdAt="2019-04-03 17:00:00" employeeId="2" status="status3" title="title3" description="description3" link="link3"/>
+</dataset>

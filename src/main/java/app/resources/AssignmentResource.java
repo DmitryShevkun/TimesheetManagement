@@ -53,9 +53,6 @@ public class AssignmentResource {
             @PathParam("assignmentId") int assignmentId,
             Assignment assignment
     ) {
-        if (assignmentId != assignment.getId()) {
-            return Response.status(Response.Status.CONFLICT.getStatusCode()).build();
-        }
         basicCrudDao.update(assignment);
         return Response.status(Response.Status.CREATED.getStatusCode()).build();
     }

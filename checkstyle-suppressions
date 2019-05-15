@@ -11,5 +11,4 @@
     <suppress checks="FinalParametersCheck" files="."/>
     <suppress checks="HiddenFieldCheck" files="."/>
     <suppress checks="AvoidInlineConditionalsCheck" files="."/>
-    <suppress checks="AvoidStarImportCheck" files="."/>
 </suppressions>

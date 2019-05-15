@@ -66,7 +66,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public Project findByAssignmentId(int id) {
-        Project project = (Project) sessionFactory.getCurrentSession().createQuery("select id from Logs as logs join Assignment as assign on logs.assignmentId = assign.id");
+        Project project = (Project) sessionFactory.getCurrentSession().createQuery("select id from Log as log join Assignment as assign on log.assignmentId = assign.id");
         return project;
     }
 
@@ -74,8 +74,8 @@ public class ProjectDaoImpl implements ProjectDao {
         List<Assignment> assignments = assignmentBasicCrudDao.findAll();
         long sumLogs = 0;
         for (Assignment assign : assignments) {
-            List<Logs> logs = (List<Logs>) logsProjectDao.findByAssignmentId(assign.getId());
-            for (Logs log : logs) {
+            List<Log> logs = (List<Log>) logsProjectDao.findByAssignmentId(assign.getId());
+            for (Log log : logs) {
                 sumLogs += log.getTime();
             }
         }

@@ -1,9 +1,14 @@
 package app.entities;
 
+import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
+@Entity
+@Table (name = "Notification")
 public class Notification {
 
+    @Id
     private int id;
     private Date createdAt;
     private int employeeId;
@@ -22,6 +27,16 @@ public class Notification {
         this.title = title;
         this.description = description;
         this.link = link;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+    	createdAt = new Timestamp(new java.util.Date().getTime());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+    	createdAt = new Timestamp(new java.util.Date().getTime());
     }
 
     public int getId() {

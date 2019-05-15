@@ -31,11 +31,12 @@
         <jersey-spring.version>2.28</jersey-spring.version>
         <mysql-connector.version>8.0.15</mysql-connector.version>
         <hibernate.version>5.4.2.Final</hibernate.version>
+        <liquibase.version>3.6.2</liquibase.version>
 
         <jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
-        <db.url>jdbc:mysql://localhost:3306/timesheet_dev?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</db.url>
-        <db.username>username</db.username>
-        <db.password>qwerty123</db.password>
+        <db.url>jdbc:mysql://mifortdev.cmltklqkx5d1.eu-west-1.rds.amazonaws.com:3306/Timesheetmanager?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</db.url>
+        <db.username>javadev</db.username>
+        <db.password>123qweasdzxc</db.password>
         <hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
         <hibernate.show_sql>true</hibernate.show_sql>
         <hibernate.format_sql>true</hibernate.format_sql>
@@ -149,19 +150,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
@@ -242,7 +230,7 @@
                 <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <phase>verify</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -280,7 +268,17 @@
                     </execution>
                 </executions>
             </plugin>
-      
+
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <configuration>
+                    <propertyFile>liquibase/liquibase.properties</propertyFile>
+                    <changeLogFile>liquibase/db-changelog-master.xml</changeLogFile>
+                </configuration>
+            </plugin>
+
         </plugins>
 
         <resources>
@@ -290,6 +288,7 @@
             </resource>
         </resources>
     </build>
+
     <reporting>
         <plugins>
             <plugin>
