@@ -80,13 +80,13 @@ public class Invitation {
 
     @Override
     public String toString() {
-        return "Invitation{" +
-                "id=" + id +
-                ", partnerId=" + partnerId +
-                ", code='" + code + '\'' +
-                ", dateEnd=" + dateEnd +
-                ", status='" + status + '\'' +
-                '}';
+        return "Invitation{"
+                + "id=" + id
+                + ", partnerId=" + partnerId
+                + ", code='" + code + '\''
+                + ", dateEnd=" + dateEnd
+                + ", status='" + status + '\''
+                + '}';
     }
 
     @Override
