@@ -13,6 +13,118 @@
   } ],
   "schemes" : [ "https", "http" ],
   "paths" : {
+    "/company/{companyId}/employee/employeeId/logs/day" : {
+      "get" : {
+        "tags" : [ "Logs" ],
+        "summary" : "Get logs from-to",
+        "operationId" : "getLogsDay",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "companyId",
+          "in" : "path",
+          "description" : "Company IDs",
+          "required" : true,
+          "type" : "integer",
+          "minimum" : 0.0,
+          "format" : "int64"
+        }, {
+          "name" : "employeeId",
+          "in" : "path",
+          "description" : "Employee IDs",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "from",
+          "in" : "query",
+          "description" : "From date",
+          "required" : true,
+          "type" : "string",
+          "format" : "date-time"
+        }, {
+          "name" : "to",
+          "in" : "query",
+          "description" : "To date",
+          "required" : true,
+          "type" : "string",
+          "format" : "date-time"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Logs"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameters supplied"
+          },
+          "404" : {
+            "description" : "Not found"
+          }
+        }
+      }
+    },
+    "/company/{companyId}/employee/employeeId/logs/week" : {
+      "get" : {
+        "tags" : [ "Logs" ],
+        "summary" : "Get logs from-to",
+        "operationId" : "getLogsWeek",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "companyId",
+          "in" : "path",
+          "description" : "Company IDs",
+          "required" : true,
+          "type" : "integer",
+          "minimum" : 0.0,
+          "format" : "int64"
+        }, {
+          "name" : "employeeId",
+          "in" : "path",
+          "description" : "Employee IDs",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "from",
+          "in" : "query",
+          "description" : "From date",
+          "required" : true,
+          "type" : "string",
+          "format" : "date-time"
+        }, {
+          "name" : "to",
+          "in" : "query",
+          "description" : "To date",
+          "required" : true,
+          "type" : "string",
+          "format" : "date-time"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Logs"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid parameters supplied"
+          },
+          "404" : {
+            "description" : "Not found"
+          }
+        }
+      }
+    },
     "/logs/get/day" : {
       "get" : {
         "tags" : [ "Logs" ],
@@ -53,13 +165,35 @@
         }
       }
     },
-    "/logs/get/month" : {
-      "get" : {
+    "/company/{companyId}/employee/{employeeId}/logs" : {
+      "post" : {
         "tags" : [ "Logs" ],
-        "summary" : "Get logs for this month",
-        "operationId" : "get log for Month",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
+        "summary" : "Commit Log",
+        "operationId" : "addLogs",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "companyId",
+          "in" : "path",
+          "description" : "Company IDs",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "employeeId",
+          "in" : "path",
+          "description" : "Employee IDs",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "body",
+          "name" : "settings",
+          "description" : "Logging entry",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Logs"
+          }
+        } ],
         "responses" : {
           "default" : {
             "description" : "Success",
@@ -95,13 +229,34 @@
         }
       }
     },
-    "/logs/delete" : {
+    "/company/{companyId}/employee/{employeeId}logs/{logsId}" : {
       "delete" : {
         "tags" : [ "Logs" ],
         "summary" : "Delete logs",
         "operationId" : "delete logs",
         "consumes" : [ "appliaction/json" ],
         "parameters" : [ {
+          "name" : "companyId",
+          "in" : "path",
+          "description" : "Company IDs",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "employeeId",
+          "in" : "path",
+          "description" : "Employee IDs",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "logsId",
+          "in" : "path",
+          "description" : "Company IDs",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
           "in" : "body",
           "name" : "logs",
           "description" : "logs to delete",
@@ -125,24 +280,15 @@
     "Logs" : {
       "type" : "object",
       "properties" : {
-        "employee" : {
-          "type" : "object",
-          "properties" : { }
-        },
         "project" : {
-          "type" : "object",
-          "properties" : { }
+          "type" : "string"
         },
         "time" : {
-          "type" : "integer",
+          "type" : "number",
           "format" : "double"
         },
         "comment" : {
           "type" : "string"
-        },
-        "date" : {
-          "type" : "object",
-          "properties" : { }
         }
       }
     }
